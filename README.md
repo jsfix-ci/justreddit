@@ -39,7 +39,7 @@ justreddit.randomPost({
 });
 
 //# Random Post via SubReddit
-justreddit.randomPost({
+justreddit.randomPostFromSub({
     reddit: "", //SubReddit name. DONT include r/ in the name.
     sortType: "",
     postGetLimit: 10,
