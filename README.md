@@ -1,69 +1,91 @@
+
 # justreddit
 
-justreddit is a simple wrapper for the reddit endpoint.
+A simple package for getting random posts, images, or subreddits via the reddit api.
 
-# Installation
 
-```
+## Installation
+
+Current release (3.0.0+) requires at Node.js 12.20.0 at minimum.
+```sh
 npm i justreddit
 ```
 
-then...
-
+## Requiring
+CommonJS
 ```js
 const justreddit = require("justreddit");
 ```
 
-or (for typescript)...
-
-```ts
+ESM
+```js
 import justreddit from "justreddit";
 ```
 
-# Usage
-
-### Get a random post from a subreddit
+## Usage
+#### Getting a random SubReddit
 ```js
-async function Post() {
-    const Response = await justreddit.Post("SUBREDDIT_NAME"); //default
-    const Top_Response = await justreddit.Post("SUBREDDIT_NAME", "top"); //gets the top posts
-    const New_Response = await justreddit.Post("SUBREDDIT_NAME", "new"); //gets the new posts
-    const Top_50_Responses = await justreddit.Post("SUBREDDIT_NAME", "top", 50); //gets the top posts with a limit of 50 posts
-    const New_100_Responses = await justreddit.Post("SUBREDDIT_NAME", "new", 100); //gets the new posts with a limit of 100 posts
+justreddit.randomSub();
 
-    //Post function returns a image url, title, upvotes, author, downvotes, and text
-}
+//# Returns a SubReddit name
 ```
 
-### Get a random image from a subreddit
+#### Getting a random post
 ```js
-async function Image() {
-    const Response = await justreddit.Image("SUBREDDIT_NAME"); //default function
-    const Top_Response = await justreddit.Image("SUBREDDIT_NAME", "top"); //gets the top images
-    const New_Response = await justreddit.Image("SUBREDDIT_NAME", "new"); //gets the new images
-    const Top_50_Responses = await justreddit.Image("SUBREDDIT_NAME", "top", 50); //gets the top images with a limit of 50 images
-    const New_100_Responses = await justreddit.Image("SUBREDDIT_NAME", "new", 100); //gets the new images with a limit of 100 images
+//# Random Post
+justreddit.randomPost({
+    sortType: "", //"top" or "new"
+    postGetLimit: 10,
+});
 
-    //Image function returns a image url
-}
+//# Random Post via SubReddit
+justreddit.randomPost({
+    reddit: "", //SubReddit name. DONT include r/ in the name.
+    sortType: "",
+    postGetLimit: 10,
+});
+
+/*
+    # Returns
+    -
+    image: string,
+    title: string,
+    content: string,
+    url: string,
+    subreddit: string,
+    author: string,
+    upvotes: number,
+    downvotes: number,
+    upvoteRatio: number,
+    nsfw: boolean,
+    createdUTC: number,
+    category: string | null,
+    thumbnail: string | null,
+    html: string | null,
+    raw: Object,
+/*
 ```
 
-### Get a random subreddit
+#### Getting a random image
 ```js
-async function SubReddit() {
-    const Response = await justreddit.SubReddit(); //default
-    const Top_Response = await justreddit.SubReddit("top"); //gets the top subreddits
-    const New_Response = await justreddit.SubReddit("new"); //gets the new subreddits
-    const Top_50_Response = await justreddit.SubReddit("top", 50); //gets the top subreddits with a limit of 50 subreddits
-    const New_100_Response = await justreddit.SubReddit("new", 100); //gets the new subreddits with a limit of 50 subreddits
+//# Random Post
+justreddit.randomImage({
+    sortType: "", //"top" or "new"
+    postGetLimit: 10,
+});
 
-    //SubReddit returns the raw data of a subreddit
-}
+//# Random Post via SubReddit
+justreddit.randomImageFromSub({
+    reddit: "", //SubReddit name. DONT include r/ in the name.
+    sortType: "",
+    postGetLimit: 10,
+});
+
+//# Returns a imageURL as a string
 ```
+## License
 
-# License
-
-Copyright © 2021 Lanred
+Copyright © 2021 <Lanred>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
