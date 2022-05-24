@@ -6,7 +6,7 @@ A simple package for getting random posts, images, or subreddits via the reddit 
 
 ## Installation
 
-Current release (3.0.0+) requires at Node.js 12.20.0 at minimum.
+Current release (3.0.0+) requires Node.js 12.20.0 at minimum.
 ```sh
 npm i justreddit
 ```
