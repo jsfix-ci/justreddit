@@ -5,7 +5,8 @@
         "declaration": true,
         "outDir": "./lib",
         "strict": true,
-        "lib": ["es2016"]
+        "lib": ["es2016"],
+        "allowJs": true
     },
     "include": ["src"],
     "exclude": ["node_modules"]
