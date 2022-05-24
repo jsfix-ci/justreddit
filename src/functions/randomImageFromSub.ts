@@ -7,8 +7,12 @@ type data = {
 };
 
 export async function randomImageFromSub(data: data): Promise<string> {
-    const post = await randomPostFromSub(data);
-    const image = post.image;
+    let image: string | null = null;
 
+    while (!image) {
+        const post = await randomPostFromSub(data);
+        image = post.image;
+    }
+    
     return image;
 }
